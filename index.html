@@ -3,207 +3,830 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currículum - Juan Francisco</title>
-  <link rel="stylesheet" href="Css/Css.css">
+  <title>Juan Francisco Jiménez De La Cruz — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0e0d;
+      --ink2: #3d3b38;
+      --ink3: #7a7771;
+      --paper: #faf8f5;
+      --paper2: #f2efe9;
+      --paper3: #e8e4db;
+      --accent: #c94f2b;
+      --accent2: #e8794e;
+      --accent-light: #fdf0eb;
+      --teal: #1a6b5e;
+      --teal-light: #e0f0ed;
+      --border: #ddd9d0;
+      --tag-bg: #f0ede6;
+    }
+
+    @media print {
+      body { background: white !important; }
+      .wrapper { box-shadow: none !important; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper2);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      line-height: 1.5;
+    }
+
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    /* ── HEADER ── */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+      padding: 3rem 3rem 2rem;
+      border-bottom: 1.5px solid var(--ink);
+      position: relative;
+    }
+
+    .cv-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 60%, var(--teal) 100%);
+    }
+
+    .header-name-block {}
+
+    .header-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    h1.cv-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    h1.cv-name span {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-tagline {
+      margin-top: 0.8rem;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink2);
+      max-width: 440px;
+      line-height: 1.6;
+    }
+
+    .header-contact {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      padding-bottom: 0.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      font-size: 12.5px;
+      color: var(--ink2);
+      text-decoration: none;
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      font-size: 13px;
+      width: 16px;
+      text-align: center;
+    }
+
+    /* ── BODY GRID ── */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+    }
+
+    /* ── SIDEBAR ── */
+    .cv-sidebar {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2.5rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    .sidebar-section-title {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* Skills bars */
+    .skill-item {
+      margin-bottom: 0.85rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .skill-name {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-name i {
+      font-size: 13px;
+      color: var(--accent2);
+    }
+
+    .skill-pct {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .skill-bar-bg {
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 1.2s ease;
+    }
+
+    /* Soft skills tags */
+    .soft-skill {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      margin: 3px 3px 3px 0;
+      font-weight: 300;
+    }
+
+    /* Languages */
+    .lang-item {
+      margin-bottom: 0.7rem;
+    }
+
+    .lang-name {
+      font-size: 12px;
+      color: var(--paper);
+      margin-bottom: 3px;
+    }
+
+    .lang-level {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .lang-dots {
+      display: flex;
+      gap: 4px;
+      margin-top: 5px;
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+    }
+
+    .dot.on { background: var(--accent2); }
+    .dot.off { background: rgba(255,255,255,0.12); }
+
+    /* References */
+    .ref-item {
+      margin-bottom: 1rem;
+    }
+
+    .ref-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--paper);
+      margin-bottom: 2px;
+    }
+
+    .ref-title {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+
+    .ref-phone {
+      font-size: 11px;
+      color: var(--accent2);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .cv-main {
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Section blocks */
+    .section-title {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+    }
+
+    /* Profile */
+    .profile-text {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-weight: 300;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      font-style: italic;
+    }
+
+    /* Experience */
+    .exp-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 5px;
+    }
+
+    .exp-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .exp-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 5px;
+    }
+
+    .exp-item:last-child .exp-line { display: none; }
+
+    .exp-content {}
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .exp-period {
+      font-size: 11px;
+      color: var(--ink3);
+      white-space: nowrap;
+      background: var(--tag-bg);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    .exp-company {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 400;
+      margin: 2px 0 6px;
+    }
+
+    .exp-desc {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+
+    .tag {
+      font-size: 10.5px;
+      padding: 2px 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .project-card.teal::before {
+      background: linear-gradient(90deg, var(--teal), #2da18f);
+    }
+
+    .project-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 11.5px;
+      color: var(--ink3);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .proj-link {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .proj-link.teal { color: var(--teal); }
+    .proj-link i { font-size: 11px; }
+
+    /* Education */
+    .edu-item {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--paper3);
+    }
+
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .edu-school {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .edu-period {
+      font-size: 11px;
+      color: var(--ink3);
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      padding: 2px 7px;
+      background: var(--teal-light);
+      color: var(--teal);
+      border-radius: 100px;
+      font-weight: 500;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Footer */
+    .cv-footer {
+      border-top: 1px solid var(--border);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--paper2);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--ink3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .footer-link {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .cv-header { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem 1.5rem; }
+      .header-contact { text-align: left; align-items: flex-start; }
+      .contact-item { justify-content: flex-start; }
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-sidebar { padding: 2rem 1.5rem; }
+      .cv-main { padding: 2rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cv-footer { flex-direction: column; gap: 0.5rem; padding: 1rem 1.5rem; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="sidebar">
-      <img src="Imagen/Curricuom.png" alt="Foto de perfil" style="height: 31%; width: 100%;" class="profile-pic">
-      <h1>Juan Francisco Jimenez<br> De La Cruz</h1>
-      <div class="subtitle">Est. Ingeniero en software</div>
-      <section>
-        <h2>ACERCA DE MI:</h2>
-        <p>Estudiante trabajador y responsable. Listo para utilizar mis habilidades y pasión para impulsar la misión de una compañía. Tecnológicamente hábil, ofrezco experiencia en muchas plataformas de medios sociales, programas de oficina y habilidades informáticas avanzadas. Aportar una actitud positiva, la voluntad y motivación para aprender nuevos programas.</p>
-      </section>
-      <section>
-        <h2>HABILIDADES</h2>
-        <ul>
-          <li>Puntualidad</li>
-          <li>Trabajo en equipo</li>
-          <li>Responsabilidad</li>
-          <li>Creatividad</li>
-          <li>Iniciativa</li>
-        </ul>
-      </section>
-      <section>
-        <h2>DATOS DE CONTACTO</h2>
-        <p><strong>Contacto:</strong><br>+1 (809) –931–3720</p>
-        <p><strong>Dirección:</strong><br>Las Carmelitas. La Vega, Rep. Dom.</p>
-        <p><strong>Email:</strong><br>franciscojimenez0094@gmail.com</p>
-      </section>
-    </div>
-    <div class="content">
-      <section>
-        <h2>CONOCIMIENTOS</h2>
-        <div class="icons">
-          <div class="icon-item">
-            <div class="circle" data-percent="40">
-              <i class="fas fa-database"></i>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="cv-header">
+      <div class="header-name-block">
+        <p class="header-label">Ingeniero en Software · Desarrollador Web</p>
+        <h1 class="cv-name">Juan Francisco<br><span>Jiménez</span> De La Cruz</h1>
+        <p class="header-tagline">Estudiante de Ingeniería en Software con experiencia práctica en desarrollo web fullstack, sistemas de gestión y trabajo en entornos IT. Orientado a resultados, con actitud proactiva y pasión por construir soluciones tecnológicas de impacto.</p>
+      </div>
+      <div class="header-contact">
+        <a class="contact-item" href="tel:+18099313720">
+          <i class="fas fa-phone"></i>
+          +1 (809) 931-3720
+        </a>
+        <a class="contact-item" href="mailto:franciscojimenez0094@gmail.com">
+          <i class="fas fa-envelope"></i>
+          franciscojimenez0094@gmail.com
+        </a>
+        <span class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          Las Carmelitas, La Vega, R.D.
+        </span>
+        <a class="contact-item" href="https://github.com/Lynch-JF" target="_blank">
+          <i class="fab fa-github"></i>
+          github.com/Lynch-JF
+        </a>
+        <a class="contact-item" href="https://showservice.vercel.app/" target="_blank">
+          <i class="fas fa-globe"></i>
+          showservice.vercel.app
+        </a>
+      </div>
+    </header>
+
+    <div class="cv-body">
+
+      <!-- SIDEBAR -->
+      <aside class="cv-sidebar">
+
+        <div>
+          <p class="sidebar-section-title">Conocimientos técnicos</p>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="skill-pct">70%</span>
             </div>
-            <br>
-            <span>SQL Server</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div>
           </div>
-          <div class="icon-item">
-            <div class="circle" data-percent="70">
-              <i class="fab fa-html5"></i>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="skill-pct">60%</span>
             </div>
-            <br>
-            <span>HTML5</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div>
           </div>
-          <div class="icon-item">
-            <div class="circle" data-percent="60">
-              <i class="fab fa-css3-alt"></i>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="skill-pct">30%</span>
             </div>
-            <br>
-            <span>CSS3</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:30%"></div></div>
           </div>
-          <div class="icon-item">
-            <div class="circle" data-percent="20">
-              <i class="fab fa-js"></i>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fas fa-database"></i> SQL Server</span>
+              <span class="skill-pct">40%</span>
             </div>
-            <br>
-            <span>JavaScript</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
           </div>
-          <div class="icon-item">
-            <div class="circle" data-percent="40">
-              <i class="fas fa-code"></i>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fas fa-code"></i> C#</span>
+              <span class="skill-pct">40%</span>
             </div>
-            <br>    
-            <span>C#</span>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+              <span class="skill-pct">50%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
           </div>
         </div>
-      </section>
-      <section>
-               <br>
-        <h2>PROYECTOS</h2>
-        <h3>STARKCAR</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/Siter">Repositorio pagina web (STARKCAR)</a></li>
-          <li>Pagina web: <a href="https://starkcar.vercel.app/">STARKCAR </a></li>
-          
-        </ul>
-        <h3>CLOFFY</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/Cloffy.rd">Repositorio pagina web (CLOFFY.RD)</a></li>
-            <li>Pagina web: <a href="https://lynch-jf.github.io/Cloffy.rd/">CLOFFY.RD </a></li>
-            
-        </ul>
 
-           </ul>
-        <h3>Sistema de control de tiempo</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/hidencustomer.git">Repositorio pagina web (Hidencustomer)</a></li>
-            <li>Pagina web: <a href="https://hidencustomer.vercel.app/">Hidencustomer</a></li>
-            
-        </ul>
+        <div>
+          <p class="sidebar-section-title">Competencias personales</p>
+          <span class="soft-skill">Puntualidad</span>
+          <span class="soft-skill">Trabajo en equipo</span>
+          <span class="soft-skill">Responsabilidad</span>
+          <span class="soft-skill">Creatividad</span>
+          <span class="soft-skill">Iniciativa</span>
+          <span class="soft-skill">Aprendizaje continuo</span>
+        </div>
 
-        <h3>Sistema de Tickets</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/showservice.git">Repositorio pagina web (Showservice)</a></li>
-            <li>Pagina web: <a href="https://showservice.vercel.app/">Showservice</a></li>
-            
-        </ul>
+        <div>
+          <p class="sidebar-section-title">Idiomas</p>
+          <div class="lang-item">
+            <div class="lang-name">Español</div>
+            <div class="lang-level">Nativo</div>
+            <div class="lang-dots">
+              <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+              <div class="dot on"></div><div class="dot on"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">Inglés</div>
+            <div class="lang-level">Básico</div>
+            <div class="lang-dots">
+              <div class="dot on"></div><div class="dot on"></div><div class="dot off"></div>
+              <div class="dot off"></div><div class="dot off"></div>
+            </div>
+          </div>
+        </div>
 
-        <h3>TO-DO</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/to-do.git">Repositorio pagina web (TO-DO)</a></li>
-            <li>Pagina web: <a href="https://to-do-zeta-henna.vercel.app/">hidencustomer</a></li>
-            
-        </ul>
+        <div>
+          <p class="sidebar-section-title">Referencias</p>
+          <div class="ref-item">
+            <div class="ref-name">Juan Carlos Socorro</div>
+            <div class="ref-title">Licenciado en Sistemas</div>
+            <div class="ref-phone">+1 (849) 847-1911</div>
+          </div>
+          <div class="ref-item">
+            <div class="ref-name">Wellington Abreu Arias</div>
+            <div class="ref-title">Gerente, Super Wellington</div>
+            <div class="ref-phone">+1 (809) 749-4550</div>
+          </div>
+        </div>
 
-        <h3>GESTION DE VENTAS 1</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/gestipn_ventas">GESTION DE VENTAS 1</a></li>
-            
-        </ul>
+      </aside>
 
+      <!-- MAIN -->
+      <main class="cv-main">
 
-        <h3>GESTION DE VENTAS 2</h3>
-        <p>Repositorio Github</p>
-        <ul>
-            <li><a href="https://github.com/Lynch-JF/gestion_ventas">GESTION DE VENTAS 2</a></li>
-            
-        </ul>
+        <!-- PROFILE -->
+        <section>
+          <p class="section-title">Perfil profesional</p>
+          <p class="profile-text">Desarrollador web en formación con experiencia real en diseño de interfaces, sistemas de gestión y soporte IT. Construyo soluciones funcionales y visualmente cuidadas, combinando habilidades técnicas con actitud proactiva. Disponible para proyectos freelance, prácticas profesionales y posiciones junior.</p>
+        </section>
 
-      </section>
+        <!-- EXPERIENCE -->
+        <section>
+          <p class="section-title">Experiencia laboral</p>
 
-      <section>
-        <br>
-        <h2>EXPERIENCIA LABORAL</h2>
-        <h3>Super Wellington</h3>
-        <p>La Vega</p>
-        <ul>
-          <li>Tareas no definidas.</li>
-        </ul>
-        <h3>Grupo Michel</h3>
-        <p>La Vega</p>
-        <ul>
-          <li>Auxiliar Mercadeo</li>
-          <li>Auxiliar Almacén</li>
-          <li>Auxiliar IT</li>
-        </ul>
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+              <div class="exp-line"></div>
+            </div>
+            <div class="exp-content">
+              <div class="exp-top">
+                <div class="exp-role">Desarrollador Web Freelance</div>
+                <span class="exp-period">2023 — Presente</span>
+              </div>
+              <div class="exp-company">Cuenta propia · La Vega, R.D.</div>
+              <p class="exp-desc">Diseño y desarrollo de sitios web completos para clientes locales. Gestión del ciclo completo de proyectos: relevamiento de requisitos, diseño visual, desarrollo y despliegue en Vercel.</p>
+              <div class="exp-tags">
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Vercel</span>
+                <span class="tag">GitHub</span>
+              </div>
+            </div>
+          </div>
 
-        <h3>FREELANCE</h3>
-        <p>La Vega</p>
-        <ul>
-          <li>Desarrollo de pagina web</li>
-        </ul>
-      </section>
-      <section>
-        <br>
-        <h2>EDUCACIÓN</h2>
-        <h3>San Ignacio de Loyola. Fe y alegría. Educación Secundaria</h3>
-        <p><strong>Estudiante</strong></p>
-        <p><strong>2018 – 2022.</strong> Técnico en desarrollo y administración de aplicaciones informáticas.</p>
-        <br>
-        <h3>Universidad Abierta para Adultos (UAPA). Educación Profesional (En Proceso)</h3>
-        <p><strong>Estudiante</strong></p>
-        <ul>
-          <li>Ingeniería en Software</li>
-        </ul>
-        <br>
-        <p><strong>Capacítate para el empleo (fundación Carlos Slim). Curso adicional</strong></p>
-        <ul>
-          <li>Introducción a la programación</li>
-        </ul>
-      </section>
-      <section>
-        <br>
-        <h2>IDIOMAS</h2>
-        <p><strong>Español:</strong> Nativo &nbsp;&nbsp;&nbsp; <strong>Inglés:</strong> Basico</p>
-      </section>
-      <section>
-        <br>
-        <h2>REFERENCIAS PERSONALES</h2>
-        <p><strong>Juan Carlos Socorro (Lic. En Sistema)</strong><br>+1 (849) 847–1911</p>
-<br>
-        <p><strong>Wellington Abreu Arias (Gerente de Super Wellington)</strong><br>+1 (809) – 749 – 4550</p>
-      </section>
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+              <div class="exp-line"></div>
+            </div>
+            <div class="exp-content">
+              <div class="exp-top">
+                <div class="exp-role">Auxiliar IT / Mercadeo / Almacén</div>
+                <span class="exp-period">Experiencia previa</span>
+              </div>
+              <div class="exp-company">Grupo Michel · La Vega, R.D.</div>
+              <p class="exp-desc">Soporte técnico IT, gestión de inventario en almacén y apoyo al área de mercadeo. Entorno de trabajo corporativo con múltiples departamentos y procesos formales.</p>
+              <div class="exp-tags">
+                <span class="tag teal">Soporte IT</span>
+                <span class="tag teal">Office Suite</span>
+                <span class="tag teal">Gestión de inventario</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+              <div class="exp-line"></div>
+            </div>
+            <div class="exp-content">
+              <div class="exp-top">
+                <div class="exp-role">Empleado General</div>
+                <span class="exp-period">Experiencia previa</span>
+              </div>
+              <div class="exp-company">Super Wellington · La Vega, R.D.</div>
+              <p class="exp-desc">Primer empleo formal. Desarrollo de habilidades de trabajo en equipo, responsabilidad y atención al cliente en entorno de retail.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- PROJECTS -->
+        <section>
+          <p class="section-title">Proyectos destacados</p>
+          <div class="projects-grid">
+
+            <div class="project-card">
+              <div class="project-name">ShowService — Sistema de Tickets</div>
+              <p class="project-desc">Plataforma web para gestión de tickets de soporte con roles de usuario, seguimiento de estado y panel administrativo.</p>
+              <div class="project-links">
+                <a class="proj-link" href="https://showservice.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a class="proj-link" href="https://github.com/Lynch-JF/showservice.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+
+            <div class="project-card teal">
+              <div class="project-name">StarkCar — Plataforma automotriz</div>
+              <p class="project-desc">Sitio web de catálogo de vehículos con diseño moderno, filtros y fichas de producto detalladas.</p>
+              <div class="project-links">
+                <a class="proj-link teal" href="https://starkcar.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a class="proj-link teal" href="https://github.com/Lynch-JF/Siter" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+
+            <div class="project-card teal">
+              <div class="project-name">Hidencustomer — Control de tiempo</div>
+              <p class="project-desc">Sistema de registro y control de tiempo para clientes, con dashboard y reportes de actividad.</p>
+              <div class="project-links">
+                <a class="proj-link teal" href="https://hidencustomer.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a class="proj-link teal" href="https://github.com/Lynch-JF/hidencustomer.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-name">Cloffy.rd — Tienda de ropa</div>
+              <p class="project-desc">E-commerce de moda dominicana con catálogo visual, carrito de compras y diseño responsivo.</p>
+              <div class="project-links">
+                <a class="proj-link" href="https://lynch-jf.github.io/Cloffy.rd/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a class="proj-link" href="https://github.com/Lynch-JF/Cloffy.rd" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section>
+          <p class="section-title">Educación y formación</p>
+
+          <div class="edu-item">
+            <div class="edu-degree">Ingeniería en Software <span class="status-badge">En curso</span></div>
+            <div class="edu-school">Universidad Abierta para Adultos (UAPA)</div>
+            <div class="edu-period">2022 — Presente · La Vega, R.D.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Técnico en Desarrollo y Administración de Aplicaciones Informáticas</div>
+            <div class="edu-school">San Ignacio de Loyola — Fe y Alegría</div>
+            <div class="edu-period">2018 — 2022 · La Vega, R.D.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Introducción a la Programación</div>
+            <div class="edu-school">Capacítate para el Empleo — Fundación Carlos Slim</div>
+            <div class="edu-period">Certificación adicional</div>
+          </div>
+
+        </section>
+
+      </main>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="cv-footer">
+      <span class="footer-note">Disponible para oportunidades remotas y presenciales en R.D.</span>
+      <div class="footer-links">
+        <a class="footer-link" href="https://github.com/Lynch-JF" target="_blank"><i class="fab fa-github"></i> Lynch-JF</a>
+        <a class="footer-link" href="mailto:franciscojimenez0094@gmail.com"><i class="fas fa-envelope"></i> Contactar</a>
+      </div>
+    </footer>
+
   </div>
-  <script>
-    document.querySelectorAll('.circle').forEach(circle => {
-      const percent = circle.getAttribute('data-percent');
-      const canvas = document.createElement('canvas');
-      const size = 60;
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext('2d');
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = '#007acc';
-      ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2 - 6, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * percent / 100);
-      ctx.stroke();
-      circle.prepend(canvas);
-    });
-  </script>
 </body>
 </html>
