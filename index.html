@@ -10,529 +10,90 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink: #0f0e0d;
-      --ink2: #3d3b38;
-      --ink3: #7a7771;
-      --paper: #faf8f5;
-      --paper2: #f2efe9;
-      --paper3: #e8e4db;
-      --accent: #c94f2b;
-      --accent2: #e8794e;
-      --accent-light: #fdf0eb;
-      --teal: #1a6b5e;
-      --teal-light: #e0f0ed;
-      --border: #ddd9d0;
-      --tag-bg: #f0ede6;
+      --ink: #0f0e0d; --ink2: #3d3b38; --ink3: #7a7771;
+      --paper: #faf8f5; --paper2: #f2efe9; --paper3: #e8e4db;
+      --accent: #c94f2b; --accent2: #e8794e; --accent-light: #fdf0eb;
+      --teal: #1a6b5e; --teal-light: #e0f0ed; --border: #ddd9d0; --tag-bg: #f0ede6;
     }
-
     @media print {
       body { background: white !important; }
       .wrapper { box-shadow: none !important; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper2);
-      color: var(--ink);
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      line-height: 1.5;
-    }
-
-    .wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--paper);
-      box-shadow: 0 4px 40px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
-    }
-
-    /* ── HEADER ── */
-    .cv-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 2rem;
-      padding: 3rem 3rem 2rem;
-      border-bottom: 1.5px solid var(--ink);
-      position: relative;
-    }
-
-    .cv-header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 60%, var(--teal) 100%);
-    }
-
-    .header-name-block {}
-
-    .header-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    h1.cv-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 400;
-      line-height: 1.05;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-    }
-
-    h1.cv-name span {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .header-tagline {
-      margin-top: 0.8rem;
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--ink2);
-      max-width: 440px;
-      line-height: 1.6;
-    }
-
-    .header-contact {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      padding-bottom: 0.2rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      justify-content: flex-end;
-      font-size: 12.5px;
-      color: var(--ink2);
-      text-decoration: none;
-    }
-
-    .contact-item i {
-      color: var(--accent);
-      font-size: 13px;
-      width: 16px;
-      text-align: center;
-    }
-
-    /* ── BODY GRID ── */
-    .cv-body {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-    }
-
-    /* ── SIDEBAR ── */
-    .cv-sidebar {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 2.5rem 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-    }
-
-    .sidebar-section-title {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      font-weight: 500;
-      margin-bottom: 0.8rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-
-    /* Skills bars */
-    .skill-item {
-      margin-bottom: 0.85rem;
-    }
-
-    .skill-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .skill-name {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--paper);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .skill-name i {
-      font-size: 13px;
-      color: var(--accent2);
-    }
-
-    .skill-pct {
-      font-size: 10px;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .skill-bar-bg {
-      height: 3px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transition: width 1.2s ease;
-    }
-
-    /* Soft skills tags */
-    .soft-skill {
-      display: inline-block;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 100px;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.7);
-      margin: 3px 3px 3px 0;
-      font-weight: 300;
-    }
-
-    /* Languages */
-    .lang-item {
-      margin-bottom: 0.7rem;
-    }
-
-    .lang-name {
-      font-size: 12px;
-      color: var(--paper);
-      margin-bottom: 3px;
-    }
-
-    .lang-level {
-      font-size: 10px;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.04em;
-    }
-
-    .lang-dots {
-      display: flex;
-      gap: 4px;
-      margin-top: 5px;
-    }
-
-    .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-    }
-
+    body { font-family: 'DM Sans', sans-serif; background: var(--paper2); color: var(--ink); min-height: 100vh; padding: 2rem 1rem; line-height: 1.5; }
+    .wrapper { max-width: 900px; margin: 0 auto; background: var(--paper); box-shadow: 0 4px 40px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08); }
+    .cv-header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding: 3rem 3rem 2rem; border-bottom: 1.5px solid var(--ink); position: relative; }
+    .cv-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 60%, var(--teal) 100%); }
+    .header-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    h1.cv-name { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.05; color: var(--ink); letter-spacing: -0.02em; }
+    h1.cv-name span { font-style: italic; color: var(--accent); }
+    .header-tagline { margin-top: 0.8rem; font-size: 14px; font-weight: 300; color: var(--ink2); max-width: 440px; line-height: 1.6; }
+    .header-contact { text-align: right; display: flex; flex-direction: column; gap: 0.45rem; padding-bottom: 0.2rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end; font-size: 12.5px; color: var(--ink2); text-decoration: none; }
+    .contact-item i { color: var(--accent); font-size: 13px; width: 16px; text-align: center; }
+    .cv-body { display: grid; grid-template-columns: 220px 1fr; }
+    .cv-sidebar { background: var(--ink); color: var(--paper); padding: 2.5rem 1.6rem; display: flex; flex-direction: column; gap: 2.2rem; }
+    .sidebar-section-title { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); font-weight: 500; margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .skill-item { margin-bottom: 0.85rem; }
+    .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+    .skill-name { font-size: 12px; font-weight: 400; color: var(--paper); display: flex; align-items: center; gap: 6px; }
+    .skill-name i { font-size: 13px; color: var(--accent2); }
+    .skill-pct { font-size: 10px; color: rgba(255,255,255,0.45); }
+    .skill-bar-bg { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .skill-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .soft-skill { display: inline-block; font-size: 11px; padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); margin: 3px 3px 3px 0; font-weight: 300; }
+    .lang-item { margin-bottom: 0.7rem; }
+    .lang-name { font-size: 12px; color: var(--paper); margin-bottom: 3px; }
+    .lang-level { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .lang-dots { display: flex; gap: 4px; margin-top: 5px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; }
     .dot.on { background: var(--accent2); }
     .dot.off { background: rgba(255,255,255,0.12); }
-
-    /* References */
-    .ref-item {
-      margin-bottom: 1rem;
-    }
-
-    .ref-name {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--paper);
-      margin-bottom: 2px;
-    }
-
-    .ref-title {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 3px;
-      line-height: 1.3;
-    }
-
-    .ref-phone {
-      font-size: 11px;
-      color: var(--accent2);
-    }
-
-    /* ── MAIN CONTENT ── */
-    .cv-main {
-      padding: 2.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    /* Section blocks */
-    .section-title {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-    }
-
-    /* Profile */
-    .profile-text {
-      font-size: 13px;
-      color: var(--ink2);
-      line-height: 1.75;
-      font-weight: 300;
-      border-left: 3px solid var(--accent);
-      padding-left: 1rem;
-      font-style: italic;
-    }
-
-    /* Experience */
-    .exp-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1rem;
-      margin-bottom: 1.4rem;
-      position: relative;
-    }
-
+    .ref-item { margin-bottom: 1rem; }
+    .ref-name { font-size: 12px; font-weight: 500; color: var(--paper); margin-bottom: 2px; }
+    .ref-title { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 3px; line-height: 1.3; }
+    .ref-phone { font-size: 11px; color: var(--accent2); }
+    .cv-main { padding: 2.5rem 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+    .section-title { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .section-title::after { content: ''; flex: 1; }
+    .profile-text { font-size: 13px; color: var(--ink2); line-height: 1.75; font-weight: 300; border-left: 3px solid var(--accent); padding-left: 1rem; font-style: italic; }
+    .exp-item { display: grid; grid-template-columns: auto 1fr; gap: 0 1rem; margin-bottom: 1.4rem; position: relative; }
     .exp-item:last-child { margin-bottom: 0; }
-
-    .exp-dot-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 5px;
-    }
-
-    .exp-dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .exp-line {
-      width: 1px;
-      flex: 1;
-      background: var(--border);
-      margin-top: 5px;
-    }
-
+    .exp-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+    .exp-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .exp-line { width: 1px; flex: 1; background: var(--border); margin-top: 5px; }
     .exp-item:last-child .exp-line { display: none; }
-
-    .exp-content {}
-
-    .exp-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .exp-role {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .exp-period {
-      font-size: 11px;
-      color: var(--ink3);
-      white-space: nowrap;
-      background: var(--tag-bg);
-      padding: 2px 8px;
-      border-radius: 100px;
-    }
-
-    .exp-company {
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 400;
-      margin: 2px 0 6px;
-    }
-
-    .exp-desc {
-      font-size: 12px;
-      color: var(--ink2);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .exp-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 7px;
-    }
-
-    .tag {
-      font-size: 10.5px;
-      padding: 2px 8px;
-      background: var(--accent-light);
-      color: var(--accent);
-      border-radius: 4px;
-      font-weight: 500;
-    }
-
-    .tag.teal {
-      background: var(--teal-light);
-      color: var(--teal);
-    }
-
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-
-    .project-card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
-
-    .project-card.teal::before {
-      background: linear-gradient(90deg, var(--teal), #2da18f);
-    }
-
-    .project-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .project-desc {
-      font-size: 11.5px;
-      color: var(--ink3);
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .proj-link {
-      font-size: 11px;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: 500;
-    }
-
+    .exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .exp-role { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .exp-period { font-size: 11px; color: var(--ink3); white-space: nowrap; background: var(--tag-bg); padding: 2px 8px; border-radius: 100px; }
+    .exp-company { font-size: 12px; color: var(--accent); font-weight: 400; margin: 2px 0 6px; }
+    .exp-desc { font-size: 12px; color: var(--ink2); line-height: 1.6; font-weight: 300; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+    .tag { font-size: 10.5px; padding: 2px 8px; background: var(--accent-light); color: var(--accent); border-radius: 4px; font-weight: 500; }
+    .tag.teal { background: var(--teal-light); color: var(--teal); }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .project-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; overflow: hidden; transition: box-shadow 0.2s; }
+    .project-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .project-card.teal::before { background: linear-gradient(90deg, var(--teal), #2da18f); }
+    .project-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .project-badge { display: inline-block; font-size: 9px; padding: 2px 7px; background: var(--teal-light); color: var(--teal); border-radius: 100px; font-weight: 500; margin-bottom: 6px; }
+    .project-desc { font-size: 11.5px; color: var(--ink3); line-height: 1.5; margin-bottom: 8px; }
+    .project-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .proj-link { font-size: 11px; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; font-weight: 500; }
     .proj-link.teal { color: var(--teal); }
     .proj-link i { font-size: 11px; }
-
-    /* Education */
-    .edu-item {
-      margin-bottom: 1rem;
-      padding-left: 1rem;
-      border-left: 2px solid var(--paper3);
-    }
-
+    .edu-item { margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid var(--paper3); }
     .edu-item:last-child { margin-bottom: 0; }
-
-    .edu-degree {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-
-    .edu-school {
-      font-size: 12px;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
-
-    .edu-period {
-      font-size: 11px;
-      color: var(--ink3);
-    }
-
-    /* Status badge */
-    .status-badge {
-      display: inline-block;
-      font-size: 9.5px;
-      padding: 2px 7px;
-      background: var(--teal-light);
-      color: var(--teal);
-      border-radius: 100px;
-      font-weight: 500;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    /* Footer */
-    .cv-footer {
-      border-top: 1px solid var(--border);
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--paper2);
-    }
-
-    .footer-note {
-      font-size: 11px;
-      color: var(--ink3);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.2rem;
-    }
-
-    .footer-link {
-      font-size: 11px;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
+    .edu-degree { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+    .edu-school { font-size: 12px; color: var(--accent); margin-bottom: 2px; }
+    .edu-period { font-size: 11px; color: var(--ink3); }
+    .status-badge { display: inline-block; font-size: 9.5px; padding: 2px 7px; background: var(--teal-light); color: var(--teal); border-radius: 100px; font-weight: 500; margin-left: 6px; vertical-align: middle; }
+    .cv-footer { border-top: 1px solid var(--border); padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; background: var(--paper2); }
+    .footer-note { font-size: 11px; color: var(--ink3); }
+    .footer-links { display: flex; gap: 1.2rem; }
+    .footer-link { font-size: 11px; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; }
     @media (max-width: 700px) {
       .cv-header { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem 1.5rem; }
       .header-contact { text-align: left; align-items: flex-start; }
@@ -547,8 +108,6 @@
 </head>
 <body>
   <div class="wrapper">
-
-    <!-- HEADER -->
     <header class="cv-header">
       <div class="header-name-block">
         <p class="header-label">Ingeniero en Software · Desarrollador Web</p>
@@ -556,80 +115,43 @@
         <p class="header-tagline">Estudiante de Ingeniería en Software con experiencia práctica en desarrollo web fullstack, sistemas de gestión y trabajo en entornos IT. Orientado a resultados, con actitud proactiva y pasión por construir soluciones tecnológicas de impacto.</p>
       </div>
       <div class="header-contact">
-        <a class="contact-item" href="tel:+18099313720">
-          <i class="fas fa-phone"></i>
-          +1 (809) 931-3720
-        </a>
-        <a class="contact-item" href="mailto:franciscojimenez0094@gmail.com">
-          <i class="fas fa-envelope"></i>
-          franciscojimenez0094@gmail.com
-        </a>
-        <span class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          Las Carmelitas, La Vega, R.D.
-        </span>
-        <a class="contact-item" href="https://github.com/Lynch-JF" target="_blank">
-          <i class="fab fa-github"></i>
-          github.com/Lynch-JF
-        </a>
-        <a class="contact-item" href="https://showservice.vercel.app/" target="_blank">
-          <i class="fas fa-globe"></i>
-          showservice.vercel.app
-        </a>
+        <a class="contact-item" href="tel:+18099313720"><i class="fas fa-phone"></i>+1 (809) 931-3720</a>
+        <a class="contact-item" href="mailto:franciscojimenez0094@gmail.com"><i class="fas fa-envelope"></i>franciscojimenez0094@gmail.com</a>
+        <span class="contact-item"><i class="fas fa-map-marker-alt"></i>Las Carmelitas, La Vega, R.D.</span>
+        <a class="contact-item" href="https://github.com/Lynch-JF" target="_blank"><i class="fab fa-github"></i>github.com/Lynch-JF</a>
+        <a class="contact-item" href="https://showservice.vercel.app/" target="_blank"><i class="fas fa-globe"></i>showservice.vercel.app</a>
       </div>
     </header>
 
     <div class="cv-body">
-
-      <!-- SIDEBAR -->
       <aside class="cv-sidebar">
-
         <div>
           <p class="sidebar-section-title">Conocimientos técnicos</p>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fab fa-html5"></i> HTML5</span>
-              <span class="skill-pct">70%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fab fa-html5"></i> HTML5</span><span class="skill-pct">70%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</span>
-              <span class="skill-pct">60%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</span><span class="skill-pct">60%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fab fa-js"></i> JavaScript</span>
-              <span class="skill-pct">30%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fab fa-js"></i> JavaScript</span><span class="skill-pct">30%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:30%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fas fa-database"></i> SQL Server</span>
-              <span class="skill-pct">40%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fas fa-database"></i> SQL Server</span><span class="skill-pct">40%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fas fa-code"></i> C#</span>
-              <span class="skill-pct">40%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fas fa-code"></i> C#</span><span class="skill-pct">40%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name"><i class="fab fa-git-alt"></i> Git / GitHub</span>
-              <span class="skill-pct">50%</span>
-            </div>
+            <div class="skill-header"><span class="skill-name"><i class="fab fa-git-alt"></i> Git / GitHub</span><span class="skill-pct">50%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
           </div>
         </div>
-
         <div>
           <p class="sidebar-section-title">Competencias personales</p>
           <span class="soft-skill">Puntualidad</span>
@@ -639,27 +161,19 @@
           <span class="soft-skill">Iniciativa</span>
           <span class="soft-skill">Aprendizaje continuo</span>
         </div>
-
         <div>
           <p class="sidebar-section-title">Idiomas</p>
           <div class="lang-item">
             <div class="lang-name">Español</div>
             <div class="lang-level">Nativo</div>
-            <div class="lang-dots">
-              <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
-              <div class="dot on"></div><div class="dot on"></div>
-            </div>
+            <div class="lang-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
           </div>
           <div class="lang-item">
             <div class="lang-name">Inglés</div>
             <div class="lang-level">Básico</div>
-            <div class="lang-dots">
-              <div class="dot on"></div><div class="dot on"></div><div class="dot off"></div>
-              <div class="dot off"></div><div class="dot off"></div>
-            </div>
+            <div class="lang-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div><div class="dot off"></div><div class="dot off"></div></div>
           </div>
         </div>
-
         <div>
           <p class="sidebar-section-title">Referencias</p>
           <div class="ref-item">
@@ -673,27 +187,19 @@
             <div class="ref-phone">+1 (809) 749-4550</div>
           </div>
         </div>
-
       </aside>
 
-      <!-- MAIN -->
       <main class="cv-main">
-
-        <!-- PROFILE -->
         <section>
           <p class="section-title">Perfil profesional</p>
-          <p class="profile-text">Desarrollador web en formación con experiencia real en diseño de interfaces, sistemas de gestión y soporte IT. Construyo soluciones funcionales y visualmente cuidadas, combinando habilidades técnicas con actitud proactiva. Disponible para proyectos freelance, prácticas profesionales y posiciones junior.</p>
+          <p class="profile-text">Desarrollador web en formación con experiencia real en diseño de interfaces, sistemas de gestión y soporte IT. He desarrollado e implementado software en producción para una empresa real, combinando habilidades técnicas con visión operacional. Disponible para proyectos freelance, prácticas profesionales y posiciones junior.</p>
         </section>
 
-        <!-- EXPERIENCE -->
         <section>
           <p class="section-title">Experiencia laboral</p>
 
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-              <div class="exp-line"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
             <div class="exp-content">
               <div class="exp-top">
                 <div class="exp-role">Desarrollador Web Freelance</div>
@@ -702,62 +208,63 @@
               <div class="exp-company">Cuenta propia · La Vega, R.D.</div>
               <p class="exp-desc">Diseño y desarrollo de sitios web completos para clientes locales. Gestión del ciclo completo de proyectos: relevamiento de requisitos, diseño visual, desarrollo y despliegue en Vercel.</p>
               <div class="exp-tags">
-                <span class="tag">HTML/CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Vercel</span>
-                <span class="tag">GitHub</span>
+                <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Vercel</span><span class="tag">GitHub</span>
               </div>
             </div>
           </div>
 
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-              <div class="exp-line"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
             <div class="exp-content">
               <div class="exp-top">
                 <div class="exp-role">Auxiliar IT / Mercadeo / Almacén</div>
-                <span class="exp-period">Experiencia previa</span>
+                <span class="exp-period">Ago. 2023 — Presente</span>
               </div>
               <div class="exp-company">Grupo Michel · La Vega, R.D.</div>
-              <p class="exp-desc">Soporte técnico IT, gestión de inventario en almacén y apoyo al área de mercadeo. Entorno de trabajo corporativo con múltiples departamentos y procesos formales.</p>
+              <p class="exp-desc">Rol multidisciplinario en entorno corporativo con responsabilidades en tres departamentos:</p>
+              <p class="exp-desc" style="margin-top:6px;"><strong style="color:var(--ink);font-weight:500;">IT:</strong> Soporte técnico a usuarios, instalación y configuración de equipos y gestión de redes. Desarrollé e implementé dos sistemas de software actualmente en producción: un sistema de gestión de tickets (ShowService) y un sistema de control de tiempos para seguimiento de pedidos en almacén (Hidencustomer).</p>
+              <p class="exp-desc" style="margin-top:4px;"><strong style="color:var(--ink);font-weight:500;">Almacén:</strong> Saque y preparación de pedidos, pase de inventario y manejo del sistema institucional de gestión.</p>
+              <p class="exp-desc" style="margin-top:4px;"><strong style="color:var(--ink);font-weight:500;">Mercadeo:</strong> Gestión de redes sociales, apoyo en diseño y trabajo con CRM para seguimiento de clientes y campañas.</p>
               <div class="exp-tags">
-                <span class="tag teal">Soporte IT</span>
-                <span class="tag teal">Office Suite</span>
-                <span class="tag teal">Gestión de inventario</span>
+                <span class="tag teal">Soporte IT</span><span class="tag teal">Desarrollo de Software</span><span class="tag teal">C# / SQL Server</span><span class="tag teal">CRM</span><span class="tag teal">Gestión de inventario</span>
               </div>
             </div>
           </div>
 
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-              <div class="exp-line"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
             <div class="exp-content">
               <div class="exp-top">
                 <div class="exp-role">Empleado General</div>
-                <span class="exp-period">Experiencia previa</span>
+                <span class="exp-period">2020 — 2023</span>
               </div>
               <div class="exp-company">Super Wellington · La Vega, R.D.</div>
-              <p class="exp-desc">Primer empleo formal. Desarrollo de habilidades de trabajo en equipo, responsabilidad y atención al cliente en entorno de retail.</p>
+              <p class="exp-desc">Primer empleo formal. Desarrollo de habilidades de trabajo en equipo, responsabilidad y atención al cliente en entorno de retail durante 3 años.</p>
             </div>
           </div>
-
         </section>
 
-        <!-- PROJECTS -->
         <section>
           <p class="section-title">Proyectos destacados</p>
           <div class="projects-grid">
 
             <div class="project-card">
               <div class="project-name">ShowService — Sistema de Tickets</div>
-              <p class="project-desc">Plataforma web para gestión de tickets de soporte con roles de usuario, seguimiento de estado y panel administrativo.</p>
+              <div class="project-badge">✓ En producción · Grupo Michel</div>
+              <p class="project-desc">Plataforma web desarrollada e implementada para Grupo Michel. Gestión de tickets de soporte técnico con roles de usuario, seguimiento de estado y panel administrativo.</p>
               <div class="project-links">
                 <a class="proj-link" href="https://showservice.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
                 <a class="proj-link" href="https://github.com/Lynch-JF/showservice.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+
+            <div class="project-card teal">
+              <div class="project-name">Hidencustomer — Control de Tiempos</div>
+              <div class="project-badge">✓ En producción · Grupo Michel</div>
+              <p class="project-desc">Sistema desarrollado para medir el tiempo de procesamiento de pedidos en almacén. Permite monitorear el rendimiento de auxiliares con dashboard y reportes de actividad.</p>
+              <div class="project-links">
+                <a class="proj-link teal" href="https://hidencustomer.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a class="proj-link teal" href="https://github.com/Lynch-JF/hidencustomer.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
               </div>
             </div>
 
@@ -767,15 +274,6 @@
               <div class="project-links">
                 <a class="proj-link teal" href="https://starkcar.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
                 <a class="proj-link teal" href="https://github.com/Lynch-JF/Siter" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-              </div>
-            </div>
-
-            <div class="project-card teal">
-              <div class="project-name">Hidencustomer — Control de tiempo</div>
-              <p class="project-desc">Sistema de registro y control de tiempo para clientes, con dashboard y reportes de actividad.</p>
-              <div class="project-links">
-                <a class="proj-link teal" href="https://hidencustomer.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
-                <a class="proj-link teal" href="https://github.com/Lynch-JF/hidencustomer.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
               </div>
             </div>
 
@@ -791,34 +289,27 @@
           </div>
         </section>
 
-        <!-- EDUCATION -->
         <section>
           <p class="section-title">Educación y formación</p>
-
           <div class="edu-item">
             <div class="edu-degree">Ingeniería en Software <span class="status-badge">En curso</span></div>
             <div class="edu-school">Universidad Abierta para Adultos (UAPA)</div>
             <div class="edu-period">2022 — Presente · La Vega, R.D.</div>
           </div>
-
           <div class="edu-item">
             <div class="edu-degree">Técnico en Desarrollo y Administración de Aplicaciones Informáticas</div>
             <div class="edu-school">San Ignacio de Loyola — Fe y Alegría</div>
             <div class="edu-period">2018 — 2022 · La Vega, R.D.</div>
           </div>
-
           <div class="edu-item">
             <div class="edu-degree">Introducción a la Programación</div>
             <div class="edu-school">Capacítate para el Empleo — Fundación Carlos Slim</div>
             <div class="edu-period">Certificación adicional</div>
           </div>
-
         </section>
-
       </main>
     </div>
 
-    <!-- FOOTER -->
     <footer class="cv-footer">
       <span class="footer-note">Disponible para oportunidades remotas y presenciales en R.D.</span>
       <div class="footer-links">
@@ -826,7 +317,6 @@
         <a class="footer-link" href="mailto:franciscojimenez0094@gmail.com"><i class="fas fa-envelope"></i> Contactar</a>
       </div>
     </footer>
-
   </div>
 </body>
 </html>
