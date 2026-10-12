@@ -158,7 +158,15 @@
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-header"><span class="skill-name"><i class="fas fa-code"></i> C#</span></div>
+            <div class="skill-header"><span class="skill-name"><i class="fas fa-code"></i> C# / .NET</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name"><i class="fab fa-node-js"></i> Node.js / Express</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name"><i class="fas fa-database"></i> PostgreSQL</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
           </div>
           <div class="skill-item">
@@ -216,7 +224,7 @@
       <main class="cv-main">
         <section>
           <p class="section-title">Perfil profesional</p>
-          <p class="profile-text">Desarrollador web en formación con experiencia real en diseño de interfaces, sistemas de gestión y soporte IT. He desarrollado e implementado software en producción para una empresa real, combinando habilidades técnicas con visión operacional. De forma independiente, también desarrollo RetailSystems, un sistema ERP para retail que cubre ventas, inventario, compras y contabilidad. Disponible para proyectos freelance, prácticas profesionales y posiciones junior.</p>
+          <p class="profile-text">Desarrollador web en formación con experiencia real en diseño de interfaces, sistemas de gestión y soporte IT. He desarrollado e implementado varios sistemas que hoy están en producción: herramientas internas para Grupo Michel, un punto de venta completo para un bar y un sistema de costeo logístico, combinando habilidades técnicas con visión operacional. Trabajo con aplicaciones de escritorio en C#/.NET, APIs en Node.js y bases de datos SQL Server y PostgreSQL desplegadas en la nube. Disponible para proyectos freelance, prácticas profesionales y posiciones junior.</p>
         </section>
 
         <section>
@@ -230,9 +238,9 @@
                 <span class="exp-period">2023 — Presente</span>
               </div>
               <div class="exp-company">Cuenta propia · La Vega, R.D.</div>
-              <p class="exp-desc">Diseño y desarrollo de sitios web completos para clientes locales. Gestión del ciclo completo de proyectos: relevamiento de requisitos, diseño visual, desarrollo y despliegue en Vercel.</p>
+              <p class="exp-desc">Diseño y desarrollo de sitios web y sistemas a medida para clientes locales, con el ciclo completo: requisitos, diseño, desarrollo, despliegue y soporte. Desarrollé el sistema de punto de venta de VIP BAR y el sistema de costeo logístico de SUJUMI, ambos en uso diario.</p>
               <div class="exp-tags">
-                <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Vercel</span><span class="tag">GitHub</span>
+                <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">C# / .NET</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Vercel / Railway</span>
               </div>
             </div>
           </div>
@@ -245,7 +253,7 @@
                 <span class="exp-period">Jul. 2025 — Presente</span>
               </div>
               <div class="exp-company">Grupo Michel · La Vega, R.D.</div>
-              <p class="exp-desc">Soporte técnico a usuarios, instalación y configuración de equipos y gestión de redes. Desarrollé e implementé dos sistemas de software actualmente en producción: un sistema de gestión de tickets (ShowService) y un sistema de control de tiempos para seguimiento de pedidos en almacén (Hidencustomer).</p>
+              <p class="exp-desc">Soporte técnico a usuarios, instalación y configuración de equipos y gestión de redes. Desarrollé e implementé dos sistemas de software actualmente en producción: un sistema de gestión de tickets (ShowService), un sistema de control de tiempos para seguimiento de pedidos en almacén (Hidencustomer) y una aplicación de escritorio para validar RNC, cédulas y comprobantes fiscales ante la DGII.</p>
               <div class="exp-tags">
                 <span class="tag teal">Soporte IT</span><span class="tag teal">Desarrollo de Software</span><span class="tag teal">C# / SQL Server</span>
               </div>
@@ -300,14 +308,37 @@
           <div class="projects-grid">
 
             <div class="project-card">
-              <div class="project-name">RetailSystems — ERP para Retail</div>
-              <div class="project-badge">Proyecto independiente</div>
-              <p class="project-desc">Sistema de gestión para retail construido desde cero: ventas, inventario, compras, clientes y contabilidad (cuentas por cobrar/pagar, asientos contables). Incluye gestión de usuarios y permisos por rol, consultas SQL directas y generación de reportes.</p>
+              <div class="project-name">VIP BAR — Sistema POS para Bar</div>
+              <div class="project-badge">✓ En producción · VIP BAR</div>
+              <p class="project-desc">Punto de venta completo para un bar: mesas y venta directa, caja con cierre ciego, ventas a crédito, compras, inventario de productos e insumos, contabilidad y reportes. App de escritorio en C# con API en Node.js y PostgreSQL en la nube, impuestos calculados en el servidor, autorización por PIN e instalador con actualizaciones automáticas.</p>
               <div class="project-links">
-                <a class="proj-link" href="https://github.com/Lynch-JF/RetailSystems" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <span class="proj-link"><i class="fas fa-lock"></i> Código privado (cliente)</span>
               </div>
             </div>
-
+            <div class="project-card teal">
+              <div class="project-name">Costeo Logística — SUJUMI</div>
+              <div class="project-badge">✓ En uso · SUJUMI</div>
+              <p class="project-desc">Calcula el costo real de cada pedido: preparación en almacén, viajes propios y de terceros (vehículo y personal) y comparación entre opciones. Panel de rentabilidad con desglose por pedido y por auxiliar. Consultas optimizadas de segundos a ~6 ms.</p>
+              <div class="project-links">
+                <span class="proj-link teal"><i class="fas fa-lock"></i> Código privado (cliente)</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-name">RetailSystems — ERP para Retail</div>
+              <div class="project-badge">Proyecto independiente</div>
+              <p class="project-desc">Sistema de gestión comercial: ventas con NCF y crédito, inventario y pase de inventario, compras, devoluciones, activos fijos, cuentas por cobrar y por pagar y contabilidad de partida doble. Migrado de conexión directa a la base a una arquitectura cliente-servidor con API REST (Node.js + Azure SQL), stock controlado sin ventas duplicadas, pruebas automatizadas y actualizaciones automáticas.</p>
+              <div class="project-links">
+                <span class="proj-link"><i class="fas fa-lock"></i> Código privado</span>
+              </div>
+            </div>
+            <div class="project-card teal">
+              <div class="project-name">Consulta DGII — Validación fiscal</div>
+              <div class="project-badge">✓ En producción · Grupo Michel</div>
+              <p class="project-desc">Aplicación de escritorio (.NET 8) para validar RNC, cédulas, NCF y e-CF contra la DGII, con consulta masiva para administradores, inicio de sesión con servidor propio y actualizaciones automáticas.</p>
+              <div class="project-links">
+                <span class="proj-link teal"><i class="fas fa-lock"></i> Código privado (empresa)</span>
+              </div>
+            </div>
             <div class="project-card">
               <div class="project-name">ShowService — Sistema de Tickets</div>
               <div class="project-badge">✓ En producción · Grupo Michel</div>
